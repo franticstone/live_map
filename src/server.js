@@ -48,4 +48,5 @@ server.listen(port, function listening() {
     log.info("Listening on %d", port);
 });
 
-setInterval(SocketController.SendPlayerData, GetConvarInt("livemap_milliseconds", 500)); // Default = half a second.
+// SET TO 4 SECONDS
+setInterval(SocketController.SendPlayerData, GetConvarInt("livemap_milliseconds", 4000)); // Default = half a second.

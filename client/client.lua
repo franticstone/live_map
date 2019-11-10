@@ -176,27 +176,29 @@ Citizen.CreateThread(function()
 
             end
 
-            -- Update weapons
-            local found,weapon = GetCurrentPedWeapon(PlayerPedId(), true)
-            if found and temp["weapon"] ~= weapon then
-                local weaponName = exports[GetCurrentResourceName()]:reverseWeaponHash(weapon)
-                updateData("Weapon", weaponName)
-                -- To make sure we don't call this more than we need to
-                temp["weapon"] = weapon
-            end
+            -- REMOVED WEAPONS UPDATES
+            -- -- Update weapons
+            -- local found,weapon = GetCurrentPedWeapon(PlayerPedId(), true)
+            -- if found and temp["weapon"] ~= weapon then
+            --     local weaponName = exports[GetCurrentResourceName()]:reverseWeaponHash(weapon)
+            --     updateData("Weapon", weaponName)
+            --     -- To make sure we don't call this more than we need to
+            --     temp["weapon"] = weapon
+            -- end
 
             -- Update Vehicle (and icon)
             if IsPedInAnyVehicle(PlayerPedId()) then
                 doVehicleUpdate()
 
             elseif defaultDataSet["Licence Plate"] ~= nil or defaultDataSet["Vehicle"] ~= nil then
+                -- REMOVED LICENSE PLATE
                 -- No longer in a vehicle, remove "Licence Plate" if present
-                defaultDataSet["Licence Plate"] = nil
-                defaultDataSet["Vehicle"] = nil
-                temp["vehicle"] = nil
-                -- Remove it from socket communication
-                TriggerServerEvent("livemap:RemovePlayerData", "Licence Plate")
-                TriggerServerEvent("livemap:RemovePlayerData", "Vehicle")
+                -- defaultDataSet["Licence Plate"] = nil
+                -- defaultDataSet["Vehicle"] = nil
+                -- temp["vehicle"] = nil
+                -- -- Remove it from socket communication
+                -- TriggerServerEvent("livemap:RemovePlayerData", "Licence Plate")
+                -- TriggerServerEvent("livemap:RemovePlayerData", "Vehicle")
             end
 
             doIconUpdate()
